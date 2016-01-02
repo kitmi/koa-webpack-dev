@@ -1,0 +1,46 @@
+{
+  "name": "koa-webpack-dev",
+  "version": "1.0.0",
+  "description": "A koa middleware works as development server for webpack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha --harmony -R spec -t 5000 test/*.js",
+    "cover": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -R dot -t 5000 test/*.js",
+    "travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- -R dot -t 5000 test/*.js"
+  },
+  "keywords": [
+    "koa",
+    "middleware",
+    "webpack",
+    "development",
+    "server"
+  ],
+  "author": "rockie <rockie@kitmi.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "istanbul-harmony": "*",
+    "koa": "^1.x",
+    "mocha": "^2.x",
+    "should": "^7.x",
+    "supertest": "^1.x",
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "css-loader": "^0.23.1",
+    "html-webpack-plugin": "^1.7.0",
+    "style-loader": "^0.13.0",
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5"
+  },
+  "dependencies": {
+    "mime": "^1.3.4",
+    "underscore": "^1.8.3",
+    "url-parse": "^1.0.5",
+    "webpack": "^1.12.9"
+  },
+  "repository": "kitmi/koa-webpack-dev",
+  "files": [
+    "index.js"
+  ]
+}

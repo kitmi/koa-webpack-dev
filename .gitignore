@@ -1,0 +1,4 @@
+.node-version
+.idea/
+node_modules/
+coverage/
