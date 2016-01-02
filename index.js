@@ -6,7 +6,7 @@
  * MIT Licensed
  */
 
-const _ = require('underscore');
+const util = require('util');
 const path = require('path');
 const mime = require('mime');
 const webpack = require('webpack');
@@ -46,7 +46,7 @@ module.exports = function (opt) {
             }
         });
 
-    let webpackConfig = _.isString(opt.config) ? require(opt.config) : opt.config;
+    let webpackConfig = util.isString(opt.config) ? require(path.resolve(process.cwd(), opt.config)) : opt.config;
     let compiler = webpack(webpackConfig);
 
     webpackConfig = compiler.options;
