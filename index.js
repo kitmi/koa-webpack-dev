@@ -34,7 +34,7 @@ module.exports = function (opt) {
         defaultPage: 'index.html'
     }, opt);
 
-    const LEVELS = { emerg: 0, alert: 1, crit: 2, error: 3, warning: 4, notice: 5, info: 6, debug: 7 };
+    const LEVELS = { error: 0, warn: 1, info: 2, verbose: 3, debug: 4 };
 
     let expectedLevel = LEVELS[opt.log.level];
     let logger = opt.log.logger || ({
@@ -50,6 +50,10 @@ module.exports = function (opt) {
     let compiler = webpack(webpackConfig);
 
     webpackConfig = compiler.options;
+
+    if (!opt.webRoot) {
+        opt.webRoot = webpackConfig.output.path;
+    }
 
     let compiling = true;
     function watchDone(err, stats) {
