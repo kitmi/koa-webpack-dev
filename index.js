@@ -41,7 +41,7 @@ module.exports = function (opt) {
             log: function (level, message, meta) {
                 let v = LEVELS[level];
                 if (v <= expectedLevel) {
-                    console.log('[' + level + ']' + message + (meta ? ' Related: ' + JSON.stringify(meta) : ''));
+                    console.log(level + ': ' + message + (meta ? ' Related: ' + JSON.stringify(meta) : ''));
                 }
             }
         });
@@ -106,7 +106,7 @@ module.exports = function (opt) {
         if (this.method !== 'GET') return yield next;
 
         let url = new URL(this.url);
-        let requestFile = path.join(webpackConfig.output.path, url.pathname);
+        let requestFile = path.join(opt.webRoot, url.pathname);
 
         // If compiling, wait until finish
         if (compiling) {

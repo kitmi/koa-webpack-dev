@@ -18,24 +18,25 @@
   "author": "rockie <rockie@kitmi.com.au>",
   "license": "MIT",
   "devDependencies": {
-    "istanbul-harmony": "*",
-    "koa": "^1.x",
-    "mocha": "^2.x",
-    "should": "^7.x",
-    "supertest": "^1.x",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "css-loader": "^0.23.1",
+    "debug": "^2.2.0",
     "html-webpack-plugin": "^1.7.0",
-    "style-loader": "^0.13.0",
+    "istanbul": "^0.4.2",
+    "koa": "^1.x",
+    "mocha": "^2.x",
     "react": "^0.14.5",
-    "react-dom": "^0.14.5"
+    "react-dom": "^0.14.5",
+    "should": "^7.x",
+    "style-loader": "^0.13.0",
+    "supertest": "^1.x"
   },
   "dependencies": {
+    "memory-fs": "^0.3.0",
     "mime": "^1.3.4",
-    "underscore": "^1.8.3",
     "url-parse": "^1.0.5",
     "webpack": "^1.12.9"
   },

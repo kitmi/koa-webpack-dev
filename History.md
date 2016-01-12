@@ -6,5 +6,6 @@
 1.0.1 / 2016-01-03
 ==================
 
-  * fix relative config path resolving
+  * fix relative config path resolving and add a web root option
   * remove underscore dependency
+  * add memory-fs dependency
