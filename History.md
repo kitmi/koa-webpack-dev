@@ -9,3 +9,8 @@
   * fix relative config path resolving and add a web root option
   * remove underscore dependency
   * add memory-fs dependency
+
+1.0.2 / 2016-01-12
+==================
+
+  * publish new version to npm to include previous fix
