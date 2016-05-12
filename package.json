@@ -32,7 +32,8 @@
     "react-dom": "^0.14.5",
     "should": "^7.x",
     "style-loader": "^0.13.0",
-    "supertest": "^1.x"
+    "supertest": "^1.x",
+    "webpack-config-options": "^1.0.0"
   },
   "dependencies": {
     "memory-fs": "^0.3.0",

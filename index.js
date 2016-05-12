@@ -46,6 +46,12 @@ module.exports = function (opt) {
             }
         });
 
+    if (opt.configOptions) {
+        let webpackConfigOptions = require('webpack-config-options');
+        opt.config = webpackConfigOptions(opt.configOptions.entry, opt.configOptions.outputPath, opt.configOptions.publicPath, opt.configOptions.features);
+        delete opt.configOptions;
+    }
+
     let webpackConfig = util.isString(opt.config) ? require(path.resolve(process.cwd(), opt.config)) : opt.config;
     let compiler = webpack(webpackConfig);
 

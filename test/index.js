@@ -63,6 +63,27 @@ describe('koa-middleware-webpack', function () {
                 .expect(200, done);
         });
 
+        it('config-options test', function (done) {
+            try {
+                fs.unlinkSync(path.join(__dirname, '../example/build/bundle.js'));
+            } catch (e) {}
+
+            var app = koa();
+            app.use(webpack({
+                configOptions: {
+                    entry: { index: path.join(__dirname, '../example/app/index.jsx') },
+                    outputPath: path.join(__dirname, '../example/build'),
+                    publicPath: '',
+                    features: { scriptPath: '', stylePath: '' }
+                }
+            }));
+
+            request(app.listen())
+                .get('/index.bundle.js')
+                .expect('content-type', 'application/javascript')
+                .expect(200, done);
+        });
+
         it('should return 404 while requesting non-exist file', function (done) {
             var app = koa();
             app.use(webpack({
