@@ -14,3 +14,8 @@
 ==================
 
   * publish new version to npm to include previous fix
+
+1.0.3 / 2016-05-13
+==================
+
+  * Add webpack-config-options feature
