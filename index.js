@@ -12,6 +12,7 @@ const mime = require('mime');
 const webpack = require('webpack');
 const URL = require('url-parse');
 const MemoryFileSystem = require('memory-fs');
+const debug = require('debug')('koa-webpack-dev');
 
 /**
  * Expose webpack middleware
@@ -29,6 +30,7 @@ module.exports = function (opt) {
             level: 'info'
         },
         stats: {
+            chunks: false,
             colors: true
         },
         defaultPage: 'index.html'
@@ -69,13 +71,13 @@ module.exports = function (opt) {
             throw err;
         }
 
-        if (stats.errors && stats.errors.length > 0) {
-            logger.log('error', 'Error occurred during compiling.', stats.errors);
-            throw new Error();
-        }
+        let jsStats = stats.toJson("minimal");
 
-        if (stats.warnings && stats.warnings.length > 0) {
-            logger.log('warning', 'Warnings recorded during compiling.', stats.warnings);
+        if (jsStats.errors && jsStats.errors.length > 0) {
+            logger.log('error', 'Error occurred during compiling.', jsStats.errors);
+
+        } else if (jsStats.warnings && jsStats.warnings.length > 0) {
+            logger.log('warning', 'Warnings recorded during compiling.', jsStats.warnings);
         } else {
             logger.log('info', 'Rebuild completed.');
             logger.log('verbose', stats.toString(opt.stats));
@@ -109,10 +111,12 @@ module.exports = function (opt) {
     compiler.watch(opt.watchOptions, watchDone);
 
     return function* (next) {
-        if (this.method !== 'GET') return yield next;
+        if (this.method !== 'GET') return yield* next;
 
         let url = new URL(this.url);
         let requestFile = path.join(opt.webRoot, url.pathname);
+
+        debug('Entered webpack middleware. URL: ' + this.url + ' => ' + requestFile);
 
         // If compiling, wait until finish
         if (compiling) {
@@ -125,14 +129,16 @@ module.exports = function (opt) {
                 if (stat.isDirectory()) {
                     requestFile = path.join(requestFile, opt.defaultPage);
                     stat = mfs.statSync(requestFile);
-                    if (!stat.isFile()) return yield next;
+                    if (!stat.isFile()) return yield* next;
                 } else {
-                    return yield next;
+                    return yield* next;
                 }
             }
         } catch (e) {
-            return yield next;
+            return yield* next;
         }
+
+        debug("Hit the built file.");
 
         // Serve content
         let content = mfs.readFileSync(requestFile);
