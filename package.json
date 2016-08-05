@@ -1,6 +1,6 @@
 {
   "name": "koa-webpack-dev",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A koa middleware works as development server for webpack.",
   "main": "index.js",
   "scripts": {
