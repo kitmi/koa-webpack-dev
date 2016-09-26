@@ -19,3 +19,8 @@
 ==================
 
   * Add webpack-config-options feature
+
+1.0.6 / 2016-09-27
+==================
+
+  * Add webpack-config-options into optionalDependencies
